@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: 'rabbitmq'
+    mem_limit: 6000m
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - ./config/rabbitMQ-definitions.json:/tmp/rabbit.definitions.json
+    networks:
+        - auto_scraping
+    environment:
+        - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_management load_definitions "/tmp/rabbit.definitions.json"
+        
+networks:
+  auto_scraping:
+    driver: bridge
