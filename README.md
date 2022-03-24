@@ -14,13 +14,11 @@ Export definitions from a docker container
 
 ```sh
 export CONTAINER_ID=[container-id] &&
-docker exec -it $CONTAINER_ID /bin/rabbitmqctl export_definitions /tmp/ definitions.file.json &&
+docker exec -it $CONTAINER_ID /opt/rabbitmq/sbin/rabbitmqctl export_definitions /tmp/ definitions.file.json &&
 docker cp $CONTAINER_ID:/tmp/definitions.file.json $HOME/definitions.file.json
 ```
 
-## Debug
-
+Change TTL until message AKC
 ```sh
-export FLASK_DEBUG=1
-export FLASK_END=development
+rabbitmqctl set_policy TTL ".*" '{"message-ttl":1200000}' --apply-to queues
 ```
