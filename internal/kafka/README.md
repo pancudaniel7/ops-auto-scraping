@@ -108,7 +108,7 @@ Create the Topic:
 ```
 /kafka/bin/kafka-topics.sh \
 --create \
---zookeeper zookeeper-1:2181 \
+--bootstrap-server kafka-1:9092,kafka-2:9092,kafka-3:9092 \
 --replication-factor 1 \
 --partitions 3 \
 --topic Orders
@@ -119,7 +119,7 @@ Describe our Topic:
 /kafka/bin/kafka-topics.sh \
 --describe \
 --topic Orders \
---zookeeper zookeeper-1:2181
+--bootstrap-server kafka-1:9092,kafka-2:9092,kafka-3:9092
 ```
 
 # Simple Producer & Consumer
