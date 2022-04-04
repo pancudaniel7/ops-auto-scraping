@@ -1,0 +1,16 @@
+topics:
+  auto-scraping-triggers:
+    partitions: 3
+    replication: 3
+    configs:
+      cleanup.policy: compact
+  auto-collected-data:
+    partitions: 3
+    replication: 3
+    configs:
+      cleanup.policy: compact
+  auto-notifications:
+    partitions: 3
+    replication: 3
+    configs:
+      cleanup.policy: compact
