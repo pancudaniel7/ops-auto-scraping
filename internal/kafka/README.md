@@ -106,20 +106,22 @@ docker exec -it zookeeper-1 bash
 ```
 Create the Topic:
 ```
-/kafka/bin/kafka-topics.sh \
---create \
---zookeeper zookeeper-1:2181 \
---replication-factor 1 \
---partitions 3 \
---topic Orders
+kafka/bin/kafka-topics.sh --create --bootstrap-server kafka-1:9092,kafka-2:9092,kafka-3:9092 --replication-factor 1 --partitions 3 --topic auto-scraping-triggers
+```
+
+Delete the Topic:
+```
+kafka/bin/kafka-topics.sh --delete --bootstrap-server kafka-1:9092,kafka-2:9092,kafka-3:9092 --topic auto-scraping-triggers
 ```
 
 Describe our Topic:
 ```
-/kafka/bin/kafka-topics.sh \
---describe \
---topic Orders \
---zookeeper zookeeper-1:2181
+kafka/bin/kafka-topics.sh --describe --topic auto-scraping-triggers --bootstrap-server kafka-1:9092,kafka-2:9092,kafka-3:9092
+```
+
+List all topics:
+```
+kafka/bin/kafka-topics.sh --list --bootstrap-server kafka-1:9092,kafka-2:9092,kafka-3:9092
 ```
 
 # Simple Producer & Consumer
